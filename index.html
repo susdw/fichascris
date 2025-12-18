@@ -34,9 +34,8 @@ async function updatePd() {
         const data = await res.json();
 
         const currentPd = parseInt(data.fields.currentPd.integerValue);
-        const maxPd = parseInt(data.fields.maxPd.integerValue);
 
-        document.getElementById("pd-text").innerText = `${currentPd} / ${maxPd}`;
+        document.getElementById("pd-text").innerText = currentPd;
 
     } catch (err) {
         console.error("Error fetching PD:", err);
