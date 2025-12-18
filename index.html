@@ -1,39 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>OBS JSON Example</title>
+<meta charset="UTF-8">
+<title>OBS Character Bar</title>
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    background: transparent;
+    color: white;
+  }
+
+  #pd-container {
+    width: 300px;      /* adjust as needed */
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  #pd-bar {
+    height: 100%;
+    width: 0%;
+    background-color: red;
+    transition: width 0.3s;
+  }
+
+  #pd-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
-  <div id="currentPdText">Carregando...</div>
+  <div id="pd-container">
+    <div id="pd-bar"></div>
+    <div id="pd-text">Loading...</div>
+  </div>
 
-  <script>
-    // URL do Firestore
-    const url = "https://firestore.googleapis.com/v1/projects/cris-ordem-paranormal/databases/(default)/documents/characters/vuLkqu9FPmrIZ4iTIhKE";
+<script>
+const url = "https://firestore.googleapis.com/v1/projects/cris-ordem-paranormal/databases/(default)/documents/characters/vuLkqu9FPmrIZ4iTIhKE";
 
-    async function updateCurrentPd() {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
+async function updatePd() {
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
 
-        // Firestore retorna os valores dentro de "fields"
-        // Exemplo: data.fields.currentPd.integerValue
-        const currentPd = data.fields.currentPd.integerValue;
+        // Firestore stores values under fields
+        const currentPd = parseInt(data.fields.currentPd.integerValue);
+        const maxPd = parseInt(data.fields.maxPd.integerValue);
 
-        // Atualiza o texto no OBS
-        document.getElementById("currentPdText").innerText = currentPd;
+        // Update text
+        document.getElementById("pd-text").innerText = `${currentPd} / ${maxPd}`;
 
-      } catch (err) {
-        console.error("Erro ao buscar JSON:", err);
-        document.getElementById("currentPdText").innerText = "Erro!";
-      }
+        // Update bar width
+        const percentage = (currentPd / maxPd) * 100;
+        document.getElementById("pd-bar").style.width = percentage + "%";
+
+    } catch (err) {
+        console.error("Error fetching PD:", err);
+        document.getElementById("pd-text").innerText = "Error";
+        document.getElementById("pd-bar").style.width = "0%";
     }
+}
 
-    // Atualiza ao carregar
-    updateCurrentPd();
+// Initial fetch
+updatePd();
 
-    // Atualiza a cada 10 segundos (opcional)
-    setInterval(updateCurrentPd, 10000);
-  </script>
+// Refresh every 5 seconds
+setInterval(updatePd, 5000);
+</script>
 </body>
 </html>
