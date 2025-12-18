@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OBS JSON Example</title>
+</head>
+<body>
+  <div id="currentPdText">Carregando...</div>
+
+  <script>
+    // URL do Firestore
+    const url = "https://firestore.googleapis.com/v1/projects/cris-ordem-paranormal/databases/(default)/documents/characters/vuLkqu9FPmrIZ4iTIhKE";
+
+    async function updateCurrentPd() {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Firestore retorna os valores dentro de "fields"
+        // Exemplo: data.fields.currentPd.integerValue
+        const currentPd = data.fields.currentPd.integerValue;
+
+        // Atualiza o texto no OBS
+        document.getElementById("currentPdText").innerText = currentPd;
+
+      } catch (err) {
+        console.error("Erro ao buscar JSON:", err);
+        document.getElementById("currentPdText").innerText = "Erro!";
+      }
+    }
+
+    // Atualiza ao carregar
+    updateCurrentPd();
+
+    // Atualiza a cada 10 segundos (opcional)
+    setInterval(updateCurrentPd, 10000);
+  </script>
+</body>
+</html>
