@@ -4,6 +4,8 @@ function characterUrl(id) {
 
 async function fetchCharacter(id) {
   const res = await fetch(characterUrl(id));
+  if (!res.ok) throw new Error('Fetch failed');
+
   const data = await res.json();
   const f = data.fields;
 
@@ -11,9 +13,9 @@ async function fetchCharacter(id) {
     id,
     name: f.name.stringValue,
     image: f.sheetPictureURL.stringValue,
-    currentPv: parseInt(f.currentPv.integerValue),
-    maxPv: parseInt(f.maxPv.integerValue),
-    currentPd: parseInt(f.currentPd.integerValue)
+    currentPv: Number(f.currentPv.integerValue),
+    maxPv: Number(f.maxPv.integerValue),
+    currentPd: Number(f.currentPd.integerValue),
   };
 }
 

@@ -96,7 +96,7 @@ async function renderList() {
             <i class="bi ${c.showPv ? 'bi-eye-fill' : 'bi-eye-slash-fill'}"></i> PV
           </button>
           <button onclick="togglePE('${c.id}')" title="Toggle PE">
-            <i class="bi ${c.showPe ? 'bi-eye-fill' : 'bi-eye-slash-fill'}"></i> PE
+            <i class="bi ${c.showPe ? 'bi-eye-fill' : 'bi-eye-slash-fill'}"></i> PD
           </button>
           <button class="overlaybutton" onclick="window.open('character/stream/?id=${c.id}','_blank')" title="Open Overlay">
             <i class="bi bi-box-arrow-up-right"></i> Stream

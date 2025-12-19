@@ -53,10 +53,13 @@ body {
     position: relative;
     width: 100%;
     transition: all 0.25s ease;
+    transform: scale(2);
+    margin-left: 270px;
+    margin-top: 80px;
 }
 
 .character:hover {
-    transform: scale(1.02);
+    transform: scale(2.1);
 }
 
 .character img {
