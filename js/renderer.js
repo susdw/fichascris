@@ -23,7 +23,10 @@ async function updateCharacter(id) {
 
     const firstName = data.name.split(" ")[0];
 
-    el.querySelector("img").src = data.image;
+    const imgEl = el.querySelector("img");
+    const useHurt = (typeof data.currentPv !== 'undefined' && typeof data.maxPv !== 'undefined')
+      && data.hurtImage && data.currentPv <= Math.floor(data.maxPv / 2);
+    imgEl.src = useHurt ? data.hurtImage : data.image;
     
     // Respect show/hide settings stored in localStorage
     try {

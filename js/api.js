@@ -3,7 +3,9 @@ function characterUrl(id) {
 }
 
 async function fetchCharacter(id) {
-  const res = await fetch(characterUrl(id));
+  const res = await fetch(characterUrl(id), {
+    cache: 'no-store'
+  });
   if (!res.ok) throw new Error('Fetch failed');
 
   const data = await res.json();
@@ -12,7 +14,8 @@ async function fetchCharacter(id) {
   return {
     id,
     name: f.name.stringValue,
-    image: f.sheetPictureURL.stringValue,
+    image: f.sheetPictureURL ? f.sheetPictureURL.stringValue : '',
+    hurtImage: f.sheetPictureHurtURL ? f.sheetPictureHurtURL.stringValue : '',
     currentPv: Number(f.currentPv.integerValue),
     maxPv: Number(f.maxPv.integerValue),
     currentPd: Number(f.currentPd.integerValue),
@@ -20,7 +23,9 @@ async function fetchCharacter(id) {
 }
 
 async function validateCharacter(id) {
-  const res = await fetch(characterUrl(id));
+  const res = await fetch(characterUrl(id), {
+    cache: 'no-store'
+  });
   if (!res.ok) return null;
 
   const data = await res.json();
@@ -29,7 +34,7 @@ async function validateCharacter(id) {
   return {
     id,
     name: f.name.stringValue,
-    image: f.sheetPictureURL.stringValue
+    image: f.sheetPictureURL ? f.sheetPictureURL.stringValue : '',
+    hurtImage: f.sheetPictureHurtURL ? f.sheetPictureHurtURL.stringValue : ''
   };
 }
-

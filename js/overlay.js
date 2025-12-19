@@ -34,7 +34,10 @@ async function update() {
   try {
     const data = await fetchCharacter(id);
 
-    el.querySelector('img').src = data.image;
+    const imgEl = el.querySelector('img');
+    const useHurt = (typeof data.currentPv !== 'undefined' && typeof data.maxPv !== 'undefined')
+      && data.hurtImage && data.currentPv <= Math.floor(data.maxPv / 2);
+    imgEl.src = useHurt ? data.hurtImage : data.image;
 
     const nameEl = el.querySelector('.name');
     const pvEl = el.querySelector('.pv');
