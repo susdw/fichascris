@@ -10,8 +10,6 @@ function renderAllCharacters() {
     });
 }
 
-renderAllCharacters();
-
 setInterval(() => {
   getCharacters()
     .filter(c => c.enabled)

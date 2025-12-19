@@ -39,3 +39,19 @@ function moveCharacter(id, dir) {
   [chars[i], chars[j]] = [chars[j], chars[i]];
   saveCharacters(chars);
 }
+
+function toggleCharacterPV(id) {
+  const chars = getCharacters();
+  const c = chars.find(c => c.id === id);
+  if (!c) return;
+  c.showPv = !c.showPv;
+  saveCharacters(chars);
+}
+
+function toggleCharacterPE(id) {
+  const chars = getCharacters();
+  const c = chars.find(c => c.id === id);
+  if (!c) return;
+  c.showPe = !c.showPe;
+  saveCharacters(chars);
+}

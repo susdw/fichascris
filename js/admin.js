@@ -14,7 +14,9 @@ form.onsubmit = async e => {
 
   addCharacter({
     id,
-    enabled: true
+    enabled: true,
+    showPv: true,
+    showPe: true
   });
 
   input.value = "";
@@ -53,6 +55,14 @@ async function renderList() {
         <button onclick="move('${c.id}', -1)">↑</button>
         <button onclick="move('${c.id}', 1)">↓</button>
         <button onclick="removeChar('${c.id}')">Remove</button>
+
+        <button onclick="togglePV('${c.id}')">
+          ${c.showPv ? "Hide" : "Show"} PV
+        </button>
+        <button onclick="togglePE('${c.id}')">
+          ${c.showPe ? "Hide" : "Show"} PE
+        </button>
+
         <strong>${data.id}</strong>
       `;
     } catch {
@@ -68,5 +78,7 @@ async function renderList() {
 window.toggle = id => { toggleCharacter(id); renderList(); };
 window.move = (id, d) => { moveCharacter(id, d); renderList(); };
 window.removeChar = id => { removeCharacter(id); renderList(); };
+window.togglePV = id => { toggleCharacterPV(id); renderList(); };
+window.togglePE = id => { toggleCharacterPE(id); renderList(); };
 
 renderList();

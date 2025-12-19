@@ -29,6 +29,20 @@ async function updateCharacter(id) {
       `${data.currentPv} / ${data.maxPv}`;
     el.querySelector(".pd").innerText =
       `${data.currentPd}`;
+
+    // Respect show/hide settings stored in localStorage
+    try {
+      const chars = getCharacters();
+      const c = chars.find(ch => ch.id === id);
+      if (c) {
+        const pvEl = el.querySelector('.pv');
+        const pdEl = el.querySelector('.pd');
+        if (pvEl) pvEl.style.display = c.showPv === false ? 'none' : '';
+        if (pdEl) pdEl.style.display = c.showPe === false ? 'none' : '';
+      }
+    } catch (e) {
+      // ignore if store not available
+    }
   } catch (err) {
     console.error("Error updating character", id, err);
   }
