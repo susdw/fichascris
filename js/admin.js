@@ -98,6 +98,9 @@ async function renderList() {
           <button onclick="togglePE('${c.id}')" title="Toggle PE">
             <i class="bi ${c.showPe ? 'bi-eye-fill' : 'bi-eye-slash-fill'}"></i> PE
           </button>
+          <button class="overlaybutton" onclick="window.open('character/stream/?id=${c.id}','_blank')" title="Open Overlay">
+            <i class="bi bi-box-arrow-up-right"></i> Stream
+          </button>
           <button onclick="removeChar('${c.id}')" title="Remove">
             <i class="bi bi-trash-fill"></i> Del
           </button>
@@ -298,5 +301,50 @@ window.removeChar = id => { removeCharacter(id); renderList(); };
 window.togglePV = id => { toggleCharacterPV(id); renderList(); };
 window.togglePE = id => { toggleCharacterPE(id); renderList(); };
 window.toggleName = id => { toggleCharacterName(id); renderList(); };
+
+// Export a static stream page for the given id (prompts download). Save as character/stream/<id>/index.html
+window.exportStream = function(id) {
+  const content = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stream - ${id}</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+  <a href="../../../admin.html" class="nav-btn" title="Back to Admin">
+    <i class="bi bi-arrow-left"></i> Admin
+  </a>
+  <div class="overlay-wrapper">
+    <div id="overlay" class="characters-grid"></div>
+  </div>
+  <script src="../../../js/config.js"></script>
+  <script src="../../../js/store.js"></script>
+  <script src="../../../js/api.js"></script>
+  <script src="../../../js/renderer.js"></script>
+  <script>
+    (function(){
+      const id = '${id}';
+      const overlay = document.getElementById('overlay');
+      const el = createCharacterElement(id);
+      overlay.appendChild(el);
+      updateCharacter(id);
+      setInterval(() => updateCharacter(id), typeof REFRESH_INTERVAL !== 'undefined' ? REFRESH_INTERVAL : 1000);
+    })();
+  </script>
+</body>
+</html>`;
+
+  const blob = new Blob([content], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${id}-stream.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(a.href);
+};
 
 renderList();

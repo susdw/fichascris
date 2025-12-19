@@ -1,0 +1,176 @@
+:root {
+    --bg-dark: #121212;
+    --red: #ff2b2b;
+    --crimson: crimson;
+    --white: #ffffff;
+}
+
+html,
+body {
+    background: radial-gradient(
+    circle at top,
+    #1c1c1c,
+    var(--bg-dark)
+    );
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Fixed Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 24px;
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(8px);
+
+  z-index: 1000;
+}
+
+
+header h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+header i {
+    color: var(--crimson);
+    font-size: 1.8rem;
+}
+
+/* Hero Section */
+.hero {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 5rem;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+    135deg,
+    rgba(220, 20, 60, 0.25),
+    transparent 60%
+    );
+    z-index: 0;
+    animation: pulse 6s infinite alternate;
+}
+
+.hero-content {
+    z-index: 1;
+    animation: fadeUp 1.2s ease forwards;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--red), var(--crimson));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.85;
+    margin-bottom: 2.5rem;
+}
+
+/* Button */
+.btn-characters {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--red), var(--crimson));
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 0 25px rgba(220, 20, 60, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 8rem;
+}
+
+.btn-characters:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 40px rgba(255, 43, 43, 0.7);
+}
+
+.header-btn {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, crimson, #ff2b2b);
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-btn i {
+  font-size: 1rem;
+  color:white;
+}
+
+.header-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(255, 43, 43, 0.55);
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from {
+    opacity: 0;
+    transform: translateY(30px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+    opacity: 0;
+    transform: translateY(-20px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    from {
+    opacity: 0.3;
+    }
+    to {
+    opacity: 0.6;
+    }
+}
