@@ -1,0 +1,83 @@
+/* FONTS */
+@font-face {
+    font-family: "MyFont";
+    src: url("../assets/fonts/OptimaMedium.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* STYLE */
+body {
+    margin: 0;
+    background: #121212;
+    font-family: Roboto, sans-serif;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+}
+
+.character {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #c9e1eb;
+    position: relative;
+}
+
+.character img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 229, 229);
+    text-shadow: 0 0 12px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0);
+    transform: rotate(-3deg);
+    margin-left: -45px;
+    margin-top: -28px;
+    text-align: left;
+}
+
+.name {         
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Optima";
+    text-transform: uppercase;
+}
+
+.stat {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.pv {
+    margin-top: -8px;
+}
+
+.pd {
+    position: absolute;
+    left: -130px;
+    bottom: -50px;
+    color: rgb(229, 239, 255);
+    text-shadow: 0 0 12px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
+    text-align: center;
+    transform-origin: center;
+    white-space: nowrap;
+    transform: translateX(-50%);
+}
+
+.nav-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 6px 10px;
+  text-decoration: none;
+  font-size: 12px;
+  z-index: 999;
+}

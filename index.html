@@ -1,58 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
-<title>OBS PD Text</title>
-<style>
-  body {
-    margin: 0;
-    background: transparent;
-    font-family: Roboto, sans-serif;
-  }
+  <meta charset="UTF-8" />
+  <title>OBS Character Overlay</title>
 
-#pd-text {
-    font-size: 60px;
-    color: #c9e1eb;
-    font-weight: 500;
-    text-align: left;
-    margin-left: 30px;
-    margin-top: 30px;
-    text-shadow: 
-      0 0 28px rgb(0 255 255), 
-      0 0 48px rgb(0 180 255), 
-      0 0 48px rgba(0, 180, 255, 0.3);
-  }
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <div id="pd-text">Loading...</div>
+  <div id="overlay"></div>
 
-<script>
-const url = "https://firestore.googleapis.com/v1/projects/cris-ordem-paranormal/databases/(default)/documents/characters/vuLkqu9FPmrIZ4iTIhKE";
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/main.js"></script>
 
-async function updatePd() {
-    try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        const currentPd = parseInt(data.fields.currentPd.integerValue);
-
-        document.getElementById("pd-text").innerText = currentPd;
-
-    } catch (err) {
-        console.error("Error fetching PD:", err);
-        document.getElementById("pd-text").innerText = "Error";
-    }
-}
-
-// Initial fetch
-updatePd();
-
-// Refresh every 5 seconds
-setInterval(updatePd, 5000);
-</script>
+  <a href="admin.html" class="nav-btn">Admin</a>
+  <div id="overlay"></div>
 </body>
 </html>
