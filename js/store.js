@@ -55,3 +55,22 @@ function toggleCharacterPE(id) {
   c.showPe = !c.showPe;
   saveCharacters(chars);
 }
+
+function toggleCharacterName(id) {
+  const chars = getCharacters();
+  const c = chars.find(c => c.id === id);
+  if (!c) return;
+  c.showName = !c.showName;
+  saveCharacters(chars);
+}
+
+// Reorder character to a specific index (used by admin drag-and-drop)
+function reorderCharacter(id, toIndex) {
+  const chars = getCharacters();
+  const from = chars.findIndex(c => c.id === id);
+  if (from < 0) return;
+  const [item] = chars.splice(from, 1);
+  const to = Math.max(0, Math.min(toIndex, chars.length));
+  chars.splice(to, 0, item);
+  saveCharacters(chars);
+}

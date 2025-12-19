@@ -24,21 +24,26 @@ async function updateCharacter(id) {
     const firstName = data.name.split(" ")[0];
 
     el.querySelector("img").src = data.image;
-    el.querySelector(".name").innerText = firstName ;
-    el.querySelector(".pv").innerText =
-      `${data.currentPv} / ${data.maxPv}`;
-    el.querySelector(".pd").innerText =
-      `${data.currentPd}`;
-
+    
     // Respect show/hide settings stored in localStorage
     try {
       const chars = getCharacters();
       const c = chars.find(ch => ch.id === id);
       if (c) {
+        const nameEl = el.querySelector('.name');
         const pvEl = el.querySelector('.pv');
         const pdEl = el.querySelector('.pd');
-        if (pvEl) pvEl.style.display = c.showPv === false ? 'none' : '';
-        if (pdEl) pdEl.style.display = c.showPe === false ? 'none' : '';
+        if (nameEl) {
+          nameEl.innerText = c.showName === false ? '?' : firstName;
+        }
+        if (pvEl) {
+          pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;
+          pvEl.style.display = c.showPv === false ? 'none' : '';
+        }
+        if (pdEl) {
+          pdEl.innerText = `${data.currentPd}`;
+          pdEl.style.display = c.showPe === false ? 'none' : '';
+        }
       }
     } catch (e) {
       // ignore if store not available
