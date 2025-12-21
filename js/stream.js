@@ -1,4 +1,5 @@
 // stream.js - renders a single character overlay based on the final path segment
+
 (function(){
   const overlay = document.getElementById('overlay');
   if (!overlay) return;

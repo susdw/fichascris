@@ -2,7 +2,7 @@ function characterUrl(id) {
   return `https://firestore.googleapis.com/v1/projects/cris-ordem-paranormal/databases/(default)/documents/characters/${id}`;
 }
 
-async function fetchCharacter(id) {
+export async function fetchCharacter(id) {
   const res = await fetch(characterUrl(id), {
     cache: 'no-store'
   });
@@ -22,7 +22,7 @@ async function fetchCharacter(id) {
   };
 }
 
-async function validateCharacter(id) {
+export async function validateCharacter(id) {
   const res = await fetch(characterUrl(id), {
     cache: 'no-store'
   });

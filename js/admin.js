@@ -10,6 +10,8 @@ import {
   subscribeCharacters
 } from "./store.js";
 
+import { validateCharacter } from "./api.js";
+
 const form = document.getElementById("add-form");
 const input = document.getElementById("character-id");
 const list = document.getElementById("character-list");
@@ -337,7 +339,7 @@ window.exportStream = function(id) {
   <script src="../../../js/config.js"></script>
   <script type="module" src="../../../js/store.js"></script>
   <script src="../../../js/api.js"></script>
-  <script src="../../../js/renderer.js"></script>
+  <script src="../../../js/overlay.js"></script>
   <script>
     (function(){
       const id = '${id}';
