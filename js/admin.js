@@ -85,10 +85,6 @@ async function renderList() {
           <span class="character-id">${data.id}</span>
         </div>
         <div class="character-controls">
-          <button onclick="toggle('${c.id}')" title="Toggle">
-            <i class="bi ${c.enabled ? 'bi-check-circle-fill' : 'bi-x-circle-fill'}"></i>
-            ${c.enabled ? "On" : "Off"}
-          </button>
           <button onclick="toggleName('${c.id}')" title="Toggle Name">
             <i class="bi ${c.showName ? 'bi-eye-fill' : 'bi-eye-slash-fill'}"></i> Nam
           </button>
@@ -100,6 +96,11 @@ async function renderList() {
           </button>
           <button class="overlaybutton" onclick="window.open('character/stream/?id=${c.id}','_blank')" title="Open Overlay">
             <i class="bi bi-box-arrow-up-right"></i> Stream
+          </button>
+        </div>
+        <div class="character-controls">
+          <button onclick="maskChar('${c.id}')" title="Mask">
+            <i class="bi ${c.masked ? 'bi-toggle-on' : 'bi-toggle-off'}"></i> Máscara
           </button>
           <button onclick="removeChar('${c.id}')" title="Remove">
             <i class="bi bi-trash-fill"></i> Del
@@ -301,6 +302,7 @@ window.removeChar = id => { removeCharacter(id); renderList(); };
 window.togglePV = id => { toggleCharacterPV(id); renderList(); };
 window.togglePE = id => { toggleCharacterPE(id); renderList(); };
 window.toggleName = id => { toggleCharacterName(id); renderList(); };
+window.maskChar = id => { maskCharacter(id); renderList(); };
 
 // Export a static stream page for the given id (prompts download). Save as character/stream/<id>/index.html
 window.exportStream = function(id) {

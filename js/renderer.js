@@ -23,21 +23,39 @@ async function updateCharacter(id) {
 
     const firstName = data.name.split(" ")[0];
 
+    const chars = getCharacters();
+    const c = chars.find(ch => ch.id === id);
+
     const imgEl = el.querySelector("img");
-    const useHurt = (typeof data.currentPv !== 'undefined' && typeof data.maxPv !== 'undefined')
-      && data.hurtImage && data.currentPv <= Math.floor(data.maxPv / 2);
-    imgEl.src = useHurt ? data.hurtImage : data.image;
+    if (c?.masked && c.maskedImage) {
+      imgEl.src = c.maskedImage;
+    } else {
+      const useHurt =
+        typeof data.currentPv !== 'undefined' &&
+        typeof data.maxPv !== 'undefined' &&
+        data.hurtImage &&
+        data.currentPv <= Math.floor(data.maxPv / 2);
+
+      imgEl.src = useHurt ? data.hurtImage : data.image;
+    }
     
     // Respect show/hide settings stored in localStorage
     try {
-      const chars = getCharacters();
-      const c = chars.find(ch => ch.id === id);
       if (c) {
         const nameEl = el.querySelector('.name');
         const pvEl = el.querySelector('.pv');
         const pdEl = el.querySelector('.pd');
         if (nameEl) {
-          nameEl.innerText = c.showName === false ? '?' : firstName;
+          if (c.showName === false) {
+            nameEl.innerText = '?';
+          } else if (c.masked) {
+            const isFemale = firstName.toLowerCase().endsWith('a');
+            nameEl.innerText = isFemale ? 'Percursora' : 'Percursor';
+          } else {
+            nameEl.innerText = firstName;
+          }
+
+          nameEl.style.color = c.masked ? '#000' : 'rgb(255, 229, 229)';
         }
         if (pvEl) {
           pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;

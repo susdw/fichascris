@@ -21,6 +21,17 @@ function removeCharacter(id) {
   saveCharacters(getCharacters().filter(c => c.id !== id));
 }
 
+function maskCharacter(id) {
+  const chars = getCharacters();
+  const c = chars.find(c => c.id === id);
+  if (!c) return;
+
+  c.masked = !c.masked;
+  c.maskedImage = ` /assets/images/${id}.png`;
+
+  saveCharacters(chars);
+}
+
 function toggleCharacter(id) {
   const chars = getCharacters();
   const c = chars.find(c => c.id === id);

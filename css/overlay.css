@@ -46,38 +46,39 @@ body {
 
 /* CHARACTER CARD - Keep original style */
 .character {
+    position: absolute;
+    width: 420px;
+    height: 180px;
     display: flex;
     align-items: center;
     gap: 14px;
     color: #c9e1eb;
     position: relative;
     width: 100%;
-    transition: all 0.25s ease;
+    transition: none;
     transform: scale(2);
-    margin-left: 270px;
+    margin-left: 350px;
     margin-top: 80px;
-}
-
-.character:hover {
-    transform: scale(2.1);
 }
 
 .character img {
     width: 140px;
     height: 140px;
+    flex: 0 0 140px;
     object-fit: cover;
     border-radius: 12px;
     border: 2px solid transparent;
-    transition: all 0.25s ease;
+    transition: none;
     box-shadow: 0 0 20px rgba(220, 20, 60, 0);
 }
 
-.character:hover img {
-    border-color: rgba(220, 20, 60, 0.6);
-    box-shadow: 0 0 25px rgba(220, 20, 60, 0.4);
-}
-
 .stats {
+    height: 44px;
+    line-height: 44px;
+    width: 260px;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: clip;
     display: flex;
     flex-direction: column;
     color: rgb(255, 229, 229);
