@@ -23,9 +23,15 @@ async function updateCharacter(id) {
 
     const firstName = data.name.split(" ")[0];
 
-    const chars = getCharacters();
-    const c = chars.find(ch => ch.id === id);
+    let c;
+    try {
+      const chars = getCharacters?.() || [];
+      c = chars.find(ch => ch.id === id);
+    } catch {
+      c = undefined;
+    }
 
+    // IMAGE (already worked)
     const imgEl = el.querySelector("img");
     if (c?.masked && c.maskedImage) {
       imgEl.src = c.maskedImage;
@@ -38,37 +44,35 @@ async function updateCharacter(id) {
 
       imgEl.src = useHurt ? data.hurtImage : data.image;
     }
-    
-    // Respect show/hide settings stored in localStorage
-    try {
-      if (c) {
-        const nameEl = el.querySelector('.name');
-        const pvEl = el.querySelector('.pv');
-        const pdEl = el.querySelector('.pd');
-        if (nameEl) {
-          if (c.showName === false) {
-            nameEl.innerText = '?';
-          } else if (c.masked) {
-            const isFemale = firstName.toLowerCase().endsWith('a');
-            nameEl.innerText = isFemale ? 'Percursora' : 'Percursor';
-          } else {
-            nameEl.innerText = firstName;
-          }
 
-          nameEl.style.color = c.masked ? '#000' : 'rgb(255, 229, 229)';
-        }
-        if (pvEl) {
-          pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;
-          pvEl.style.display = c.showPv === false ? 'none' : '';
-        }
-        if (pdEl) {
-          pdEl.innerText = `${data.currentPd}`;
-          pdEl.style.display = c.showPe === false ? 'none' : '';
-        }
+    // TEXT — ALWAYS UPDATE (OBS SAFE)
+    const nameEl = el.querySelector('.name');
+    const pvEl   = el.querySelector('.pv');
+    const pdEl   = el.querySelector('.pd');
+
+    if (nameEl) {
+      if (c?.showName === false) {
+        nameEl.innerText = '?';
+      } else if (c?.masked) {
+        const isFemale = firstName.toLowerCase().endsWith('a');
+        nameEl.innerText = isFemale ? 'Percursora' : 'Percursor';
+      } else {
+        nameEl.innerText = firstName;
       }
-    } catch (e) {
-      // ignore if store not available
+
+      nameEl.style.color = c?.masked ? '#000' : 'rgb(255, 229, 229)';
     }
+
+    if (pvEl) {
+      pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;
+      pvEl.style.display = c?.showPv === false ? 'none' : '';
+    }
+
+    if (pdEl) {
+      pdEl.innerText = `${data.currentPd}`;
+      pdEl.style.display = c?.showPe === false ? 'none' : '';
+    }
+
   } catch (err) {
     console.error("Error updating character", id, err);
   }

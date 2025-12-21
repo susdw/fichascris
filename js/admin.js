@@ -1,3 +1,14 @@
+import {
+  getCharacters,
+  addCharacter,
+  removeCharacter,
+  maskCharacter,
+  toggleCharacterPV,
+  toggleCharacterPE,
+  toggleCharacterName,
+  reorderCharacter
+} from "./store.js";
+
 const form = document.getElementById("add-form");
 const input = document.getElementById("character-id");
 const list = document.getElementById("character-list");
@@ -48,7 +59,7 @@ form.onsubmit = async e => {
 async function renderList() {
   if (!list) return;
 
-  const chars = getCharacters();
+  const chars = await getCharacters();
   const filter = (searchInput && searchInput.value) ? searchInput.value.trim().toLowerCase() : '';
 
   // token for this render; any async results from older tokens will be ignored
@@ -269,7 +280,7 @@ if (list) {
     }
   });
 
-  list.addEventListener('drop', e => {
+  list.addEventListener('drop', async e => {
     e.preventDefault();
     const id = e.dataTransfer.getData('text/plain');
     const isListView = list.classList.contains('list-view');
@@ -281,7 +292,7 @@ if (list) {
     
     if (id) {
       // Get the target index based on the FULL character list, not filtered view
-      const fullChars = getCharacters();
+      const fullChars = await getCharacters();
       let toIndex;
       if (afterEl) {
         const afterId = afterEl.dataset.id;
@@ -323,7 +334,7 @@ window.exportStream = function(id) {
     <div id="overlay" class="characters-grid"></div>
   </div>
   <script src="../../../js/config.js"></script>
-  <script src="../../../js/store.js"></script>
+  <script type="module" src="../../../js/store.js"></script>
   <script src="../../../js/api.js"></script>
   <script src="../../../js/renderer.js"></script>
   <script>
