@@ -91,12 +91,3 @@ export async function reorderCharacter(id, toIndex) {
   chars.splice(toIndex, 0, item);
   saveCharacters(chars);
 }
-
-window.getCharacters = getCharacters;
-window.addCharacter = addCharacter;
-window.removeCharacter = removeCharacter;
-window.maskCharacter = maskCharacter;
-window.toggleCharacterPV = toggleCharacterPV;
-window.toggleCharacterPE = toggleCharacterPE;
-window.toggleCharacterName = toggleCharacterName;
-window.reorderCharacter = reorderCharacter;
