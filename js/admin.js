@@ -6,7 +6,8 @@ import {
   toggleCharacterPV,
   toggleCharacterPE,
   toggleCharacterName,
-  reorderCharacter
+  reorderCharacter,
+  subscribeCharacters
 } from "./store.js";
 
 const form = document.getElementById("add-form");
