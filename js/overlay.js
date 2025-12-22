@@ -76,7 +76,7 @@ async function updateCharacter() {
         nameEl.innerText = '?';
       } else if (charState.masked) {
         const isFemale = firstName.toLowerCase().endsWith('a');
-        nameEl.innerText = isFemale ? 'Percursora' : 'Percursor';
+        nameEl.innerText = isFemale ? 'A Precursora' : 'O Precursor';
       } else {
         nameEl.innerText = firstName;
       }
