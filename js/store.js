@@ -8,6 +8,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const STORE_REF = ref(db, "overlay_characters");
+const BASE_PATH = '/fichascris';
 
 /* ---------- READ ---------- */
 
@@ -54,7 +55,7 @@ export async function maskCharacter(id) {
   if (!c) return;
 
   c.masked = !c.masked;
-  c.maskedImage = `/fichascris/assets/images/${id}.png`;
+  c.maskedImage = `${BASE_PATH}/assets/images/${id}.png`;
   saveCharacters(chars);
 }
 
