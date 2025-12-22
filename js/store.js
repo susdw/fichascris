@@ -54,7 +54,7 @@ export async function maskCharacter(id) {
   if (!c) return;
 
   c.masked = !c.masked;
-  c.maskedImage = `fichascris/assets/images/${id}.png`;
+  c.maskedImage = `/fichascris/assets/images/${id}.png`;
   saveCharacters(chars);
 }
 
