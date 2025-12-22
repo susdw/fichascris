@@ -55,7 +55,7 @@ export async function maskCharacter(id) {
   if (!c) return;
 
   c.masked = !c.masked;
-  c.maskedImage = ``;
+  c.maskedImage = `${BASE_PATH}/assets/images/${id}.png`;
   saveCharacters(chars);
 }
 
