@@ -88,6 +88,7 @@ body {
     margin-left: -40px;
     margin-top: -28px;
     text-align: left;
+    font-family: "Optima";
 }
 
 .name {         
@@ -98,18 +99,17 @@ body {
 }
 
 .stat {
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 32px;
 }
 
 .pv {
-    margin-top: -8px;
+    margin-top: -13px;
 }
 
 .pd {
     position: absolute;
     left: -100px;
-    bottom: -45px;
+    bottom: -55px;
     color: rgb(229, 239, 255);
     text-shadow: 0 0 12px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
     text-align: center;

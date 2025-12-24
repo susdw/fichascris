@@ -77,40 +77,25 @@ async function updateCharacter() {
       } else if (charState.masked) {
         const isFemale = firstName.toLowerCase().endsWith('a');
         nameEl.innerText = isFemale ? 'A Precursora' : 'O Precursor';
-
+        nameEl.style.fontSize = '30px';
         nameEl.style.color = '#000';
       } else {
         nameEl.innerText = firstName;
-        nameEl.style.color = 'rgb(255, 229, 229)';
+        nameEl.style.fontSize = '36px';
+        nameEl.style.color = '#ffe5e5ff';
       }
     }
 
     if (pvEl) {
-      pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;
+      pvEl.innerText = `${data.currentPv}/${data.maxPv}`;
       pvEl.style.display = charState.showPv === false ? 'none' : '';
-
-      if (data.currentPv <= 0) {
-        pvEl.style.color = '#000';
-        pvEl.style.animation =
-          'warning-pulse 1.5s ease-in-out infinite, warning-shake 0.5s linear infinite 1s';
-      } else {
-        pvEl.style.color = 'rgb(255, 229, 229)';
-        pvEl.style.animation = '';
-      }
+      pvEl.style.color = data.currentPv <= 0 ? '#000' : '';
     }
 
     if (pdEl) {
       pdEl.innerText = `${data.currentPd}`;
       pdEl.style.display = charState.showPe === false ? 'none' : '';
-
-      if (data.currentPd <= 0) {
-        pdEl.style.color = '#000';
-        pdEl.style.animation =
-          'warning-pulse 1.5s ease-in-out infinite, warning-shake 0.5s linear infinite 1s';
-      } else {
-        pdEl.style.color = 'rgb(255, 229, 229)';
-        pdEl.style.animation = '';
-      }
+      pdEl.style.color = data.currentPd <= 0 ? '#000' : '';
     }
 
   } catch (err) {
