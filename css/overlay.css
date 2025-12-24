@@ -1,8 +1,8 @@
 /* FONTS */
 @font-face {
-    font-family: "MyFont";
-    src: url("../assets/fonts/OptimaMedium.woff2") format("woff2");
-    font-weight: 400;
+    font-family: "Optima";
+    src: url("assets/fonts/OptimaMedium.woff2") format("woff2");
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -15,7 +15,6 @@
 
 body {
     background: #121212;
-    font-family: Roboto, sans-serif;
     padding: 20px;
     min-height: 100vh;
 }
@@ -83,19 +82,19 @@ body {
     display: flex;
     flex-direction: column;
     color: rgb(255, 229, 229);
-    text-shadow: 1px 1px 0 rgba(58, 0, 0, 0.8), 0 0 12px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0);
+    text-shadow: 1px 1px 0 rgba(58, 0, 0, 0.8), 0 0 6px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0);
     transform: rotate(-5deg);
     margin-left: -40px;
     margin-top: -28px;
     text-align: left;
     font-family: "Optima";
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    font-weight: 300;
 }
 
 .name {         
     font-size: 36px;
-    font-weight: 700;
-    font-family: "Optima";
-    text-transform: uppercase;
 }
 
 .stat {
@@ -103,7 +102,7 @@ body {
 }
 
 .pv {
-    margin-top: -13px;
+    margin-top: -16px;
     margin-left: 5px;
 }
 
@@ -112,7 +111,7 @@ body {
     left: -100px;
     bottom: -55px;
     color: rgb(229, 239, 255);
-    text-shadow: 1px 1px 0 rgba(0, 20, 58, 0.8), 0 0 12px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
+    text-shadow: 1px 1px 0 rgba(0, 20, 58, 0.8), 0 0 6px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
     text-align: center;
     transform-origin: center;
     white-space: nowrap;
