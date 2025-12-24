@@ -83,8 +83,8 @@ body {
     display: flex;
     flex-direction: column;
     color: rgb(255, 229, 229);
-    text-shadow: 0 0 12px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0);
-    transform: rotate(-3deg);
+    text-shadow: 1px 1px 0 rgba(58, 0, 0, 0.8), 0 0 12px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0);
+    transform: rotate(-5deg);
     margin-left: -40px;
     margin-top: -28px;
     text-align: left;
@@ -104,6 +104,7 @@ body {
 
 .pv {
     margin-top: -13px;
+    margin-left: 5px;
 }
 
 .pd {
@@ -111,11 +112,11 @@ body {
     left: -100px;
     bottom: -55px;
     color: rgb(229, 239, 255);
-    text-shadow: 0 0 12px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
+    text-shadow: 1px 1px 0 rgba(0, 20, 58, 0.8), 0 0 12px rgb(0, 102, 255), 0 0 20px rgb(0, 119, 255);
     text-align: center;
     transform-origin: center;
     white-space: nowrap;
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotate(5deg);
 }
 
 /* NAVIGATION BUTTON */
