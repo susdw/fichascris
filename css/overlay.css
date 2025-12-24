@@ -99,6 +99,7 @@ body {
 
 .stat {
     font-size: 32px;
+    transition: color 0.2s ease;
 }
 
 .pv {
@@ -116,6 +117,14 @@ body {
     transform-origin: center;
     white-space: nowrap;
     transform: translateX(-50%) rotate(5deg);
+}
+
+.impact {
+  animation: impactHit 0.35s ease-out;
+}
+
+.pd.impact {
+    animation: pdImpact 0.35s ease-out;
 }
 
 /* NAVIGATION BUTTON */
@@ -162,18 +171,32 @@ body {
     }
 }
 
-@keyframes warning-pulse {
-  0%   { transform: scale(1);   color: rgb(255, 229, 229); }
-  20%  { transform: scale(1.05); color: #ff3b3b; }
-  40%  { transform: scale(1); }
-  100% { transform: scale(1); }
+@keyframes impactHit {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  30% {
+    transform: scale(1.05);
+    filter: brightness(1.6);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
 }
 
-@keyframes warning-shake {
-  0%   { transform: translateX(0); }
-  15%  { transform: translateX(2px); }
-  30%  { transform: translateX(-2px); }
-  45%  { transform: translateX(2px); }
-  60%  { transform: translateX(0); }
-  100% { transform: translateX(0); }
+@keyframes pdImpact {
+  0% {
+    transform: translateX(-50%) rotate(5deg) scale(1);
+    filter: brightness(1);
+  }
+  30% {
+    transform: translateX(-50%) rotate(5deg) scale(1.1);
+    filter: brightness(1.6);
+  }
+  100% {
+    transform: translateX(-50%) rotate(5deg) scale(1);
+    filter: brightness(1);
+  }
 }

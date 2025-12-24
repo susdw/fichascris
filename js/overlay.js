@@ -38,6 +38,16 @@ overlay.appendChild(el);
 
 // ---------- STATE ----------
 let charState = null;
+let lastValues = {
+  pv: null,
+  pd: null
+};
+
+function impact(el, className = 'impact') {
+  el.classList.remove(className);
+  void el.offsetWidth;
+  el.classList.add(className);
+}
 
 // subscribe to Firebase changes
 subscribeCharacters(chars => {
@@ -90,12 +100,24 @@ async function updateCharacter() {
       pvEl.innerText = `${data.currentPv}/${data.maxPv}`;
       pvEl.style.display = charState.showPv === false ? 'none' : '';
       pvEl.style.color = data.currentPv <= 0 ? '#000' : '';
+
+      if (lastValues.pv !== null && lastValues.pv !== data.currentPv) {
+        impact(pvEl);
+      }
+
+      lastValues.pv = data.currentPv;
     }
 
     if (pdEl) {
       pdEl.innerText = `${data.currentPd}`;
       pdEl.style.display = charState.showPe === false ? 'none' : '';
       pdEl.style.color = data.currentPd <= 0 ? '#000' : '';
+
+      if (lastValues.pd !== null && lastValues.pd !== data.currentPd) {
+        impact(pdEl);
+      }
+
+      lastValues.pd = data.currentPd;
     }
 
   } catch (err) {
