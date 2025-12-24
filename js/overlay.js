@@ -77,20 +77,43 @@ async function updateCharacter() {
       } else if (charState.masked) {
         const isFemale = firstName.toLowerCase().endsWith('a');
         nameEl.innerText = isFemale ? 'A Precursora' : 'O Precursor';
+
+        nameEl.style.color = '#000';
+        nameEl.style.animation =
+          'bizarre-warp 2.5s ease-in-out infinite, bizarre-flicker 1.2s steps(2) infinite';
       } else {
         nameEl.innerText = firstName;
+        nameEl.style.color = 'rgb(255, 229, 229)';
+        nameEl.style.animation = '';
       }
-      nameEl.style.color = charState.masked ? '#000' : 'rgb(255, 229, 229)';
     }
 
     if (pvEl) {
       pvEl.innerText = `${data.currentPv} / ${data.maxPv}`;
       pvEl.style.display = charState.showPv === false ? 'none' : '';
+
+      if (data.currentPv <= 0) {
+        pvEl.style.color = '#000';
+        pvEl.style.animation =
+          'warning-pulse 1.5s ease-in-out infinite, warning-shake 0.5s linear infinite 1s';
+      } else {
+        pvEl.style.color = 'rgb(255, 229, 229)';
+        pvEl.style.animation = '';
+      }
     }
 
     if (pdEl) {
       pdEl.innerText = `${data.currentPd}`;
       pdEl.style.display = charState.showPe === false ? 'none' : '';
+
+      if (data.currentPd <= 0) {
+        pdEl.style.color = '#000';
+        pdEl.style.animation =
+          'warning-pulse 1.5s ease-in-out infinite, warning-shake 0.5s linear infinite 1s';
+      } else {
+        pdEl.style.color = 'rgb(255, 229, 229)';
+        pdEl.style.animation = '';
+      }
     }
 
   } catch (err) {

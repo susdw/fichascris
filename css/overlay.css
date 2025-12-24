@@ -70,6 +70,7 @@ body {
     border: 2px solid transparent;
     transition: none;
     box-shadow: 0 0 20px rgba(220, 20, 60, 0);
+    animation: breathe 4s ease-in-out infinite;
 }
 
 .stats {
@@ -147,4 +148,50 @@ body {
 
 .nav-btn i {
   font-size: 14px;
+}
+
+@keyframes breathe {
+    0% {
+        transform: scaleY(100%) translateY(0) rotate(0);
+    }
+    60% {
+        transform: scaleY(102%) translateY(-1%) rotate(-1deg);
+    }
+    90% {
+        transform: scaleY(99.5%) translateY(0.25%) rotate(0.5deg);
+    }
+}
+
+@keyframes warning-pulse {
+  0%   { transform: scale(1);   color: rgb(255, 229, 229); }
+  20%  { transform: scale(1.05); color: #ff3b3b; }
+  40%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes warning-shake {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(2px); }
+  30%  { transform: translateX(-2px); }
+  45%  { transform: translateX(2px); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bizarre-warp {
+  0%   { transform: translate(0, 0) skewX(0deg); opacity: 1; }
+  15%  { transform: translate(-1px, 0) skewX(-2deg); }
+  30%  { transform: translate(1px, 1px) skewX(2deg); opacity: 0.85; }
+  45%  { transform: translate(0, -1px) skewX(-1deg); }
+  60%  { transform: translate(1px, 0) skewX(1deg); opacity: 1; }
+  100% { transform: translate(0, 0) skewX(0deg); opacity: 1; }
+}
+
+@keyframes bizarre-flicker {
+  0%, 100% { text-shadow: none; }
+  50% {
+    text-shadow:
+      -1px 0 2px rgba(255, 0, 0, 0.6),
+       1px 0 2px rgba(0, 0, 0, 0.8);
+  }
 }
