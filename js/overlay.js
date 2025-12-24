@@ -79,12 +79,9 @@ async function updateCharacter() {
         nameEl.innerText = isFemale ? 'A Precursora' : 'O Precursor';
 
         nameEl.style.color = '#000';
-        nameEl.style.animation =
-          'bizarre-warp 2.5s ease-in-out infinite, bizarre-flicker 1.2s steps(2) infinite';
       } else {
         nameEl.innerText = firstName;
         nameEl.style.color = 'rgb(255, 229, 229)';
-        nameEl.style.animation = '';
       }
     }
 
